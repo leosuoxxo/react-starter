@@ -1,12 +1,9 @@
 import React from 'react';
-import { PageTemplate, Header, Footer, TodoList } from 'components';
+import {PageTemplate, Header, Footer, TodoList} from 'components';
 import styles from './index.module.scss';
 
 const HomePage = () => (
-  <PageTemplate
-    header={<Header />}
-    footer={<Footer />}
-  >
+  <PageTemplate header={<Header />} footer={<Footer />}>
     <div className={styles.homePage}>
       <TodoList />
     </div>
