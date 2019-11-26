@@ -1,7 +1,8 @@
-@import-normalize;
 @import 'src/styles/variable';
+@import-normalize;
 
-body{
+body {
+  position: absolute;
   margin: 0;
-  color:$black;
+  color: $black;
 }
