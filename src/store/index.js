@@ -1,9 +1,9 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import config from 'config';
 import middlewares from './middlewares';
 import reducer from './reducer';
 
-const {isDev, isBrowser} = config;
+const { isDev, isBrowser } = config;
 
 // development tools
 const composeEnhancers =
@@ -12,7 +12,7 @@ const composeEnhancers =
     : compose;
 
 if (isDev) {
-  const {logger} = require('redux-logger');
+  const { logger } = require('redux-logger');
   middlewares.push(logger);
 }
 

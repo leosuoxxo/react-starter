@@ -1,5 +1,5 @@
 import React from 'react';
-import {PageTemplate, Header, Footer, TodoList} from 'components';
+import { PageTemplate, Header, Footer, TodoList } from 'components';
 import styles from './index.module.scss';
 
 const HomePage = () => (

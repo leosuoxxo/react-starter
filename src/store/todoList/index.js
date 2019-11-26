@@ -1,22 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-
 const ADD_TODOLIST = 'ADD_TODOLIST';
-
 
 const initState = {
   list: ['first'],
 };
 
-
 const action = {
   addTodoList: listName => ({
     type: ADD_TODOLIST,
     payload: { listName },
-  })
-}
-
-
+  }),
+};
 
 export const useTodoList = () => {
   const dispatch = useDispatch();
@@ -26,10 +21,9 @@ export const useTodoList = () => {
 
   return [
     { list }, // state
-    { addTodoList } // eventHanlder
-  ]
+    { addTodoList }, // eventHanlder
+  ];
 };
-
 
 const reducer = (state = initState, action) => {
   switch (action.type) {

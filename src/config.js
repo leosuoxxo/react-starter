@@ -1,4 +1,3 @@
-
 const config = {
   common: {
     env: process.env.NODE_ENV || 'development',
