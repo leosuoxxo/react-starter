@@ -1,6 +1,12 @@
 {
-  "extends": [
-    "react-app",
-    "plugin:prettier/recommended"
-  ]
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  "rules": {
+    "max-len": ["error", { "code": 120 }],
+    "react/prop-types": ["warn"]
+  }
 }

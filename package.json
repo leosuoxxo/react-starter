@@ -7,13 +7,12 @@
     "build": "cross-env NODE_ENV=production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint && stylelint",
-    "eslint": "eslint \"./src/**/*.{js,jsx}\"",
-    "stylelint": "stylelint \"./src/**/*.scss\" --syntax scss",
+    "lint": "eslint \"./src/**/*.{js,jsx}\" && stylelint \"./src/**/*.scss\" --syntax scss",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "dependencies": {
     "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",

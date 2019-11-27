@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './index.module.scss';
 
 const PageTemplate = ({ header, children, footer }) => (
@@ -8,5 +9,11 @@ const PageTemplate = ({ header, children, footer }) => (
     <footer>{footer}</footer>
   </div>
 );
+
+PageTemplate.propTypes = {
+  header: PropTypes.node,
+  footer: PropTypes.node,
+  children: PropTypes.any,
+};
 
 export default PageTemplate;
