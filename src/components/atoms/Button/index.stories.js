@@ -1,6 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import { specs } from 'storybook-addon-specifications';
 import Button from './';
+import { tests } from './Button.test';
 
 export default {
   title: 'Atoms/Button',
@@ -11,7 +13,10 @@ export default {
   componentSubtitle: 'Handy status label',
 };
 
-export const _default = () => <Button />;
+export const _default = () => {
+  specs(() => tests);
+  return <Button />;
+};
 
 export const error = () => (
   <Button status="error" onClick={action('clicked')}>
