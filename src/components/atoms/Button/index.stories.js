@@ -1,8 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { specs } from 'storybook-addon-specifications';
 import Button from './';
-import { tests } from './Button.test';
 
 export default {
   title: 'Atoms/Button',
@@ -14,7 +12,6 @@ export default {
 };
 
 export const _default = () => {
-  specs(() => tests());
   return <Button />;
 };
 
