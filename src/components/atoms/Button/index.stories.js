@@ -14,7 +14,7 @@ export default {
 };
 
 export const _default = () => {
-  specs(() => tests);
+  specs(() => tests());
   return <Button />;
 };
 
