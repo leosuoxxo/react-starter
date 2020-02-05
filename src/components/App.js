@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { HomePage } from 'components';
-import './App.scss';
 
 const Reader = () => <div>Reader</div>;
 
