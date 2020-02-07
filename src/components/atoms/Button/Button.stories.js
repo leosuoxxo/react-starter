@@ -11,9 +11,7 @@ export default {
   componentSubtitle: 'Handy status label',
 };
 
-export const _default = () => {
-  return <Button />;
-};
+export const _default = () => <Button />;
 
 export const error = () => (
   <Button status="error" onClick={action('clicked')}>
