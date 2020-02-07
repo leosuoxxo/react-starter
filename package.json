@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cross-env react-scripts start",
-    "rewired": "react-app-rewired start",
-    "build": "cross-env NODE_ENV=production react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "geno": "babel-node index.js",
+    "start": "cross-env react-app-rewired start",
+    "build": "cross-env NODE_ENV=production react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
     "lint": "eslint \"./src/**/*.{js,jsx}\" && stylelint \"./src/**/*.scss\" --syntax scss",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "storybook": "start-storybook -p 6006",
@@ -22,7 +22,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "redux": "^4.0.4",
-    "sass-resources-loader": "^2.0.1"
+    "sass-resources-loader": "^2.0.1",
+    "enquirer": "^2.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
