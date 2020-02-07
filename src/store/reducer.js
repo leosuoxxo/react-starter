@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const reducers = {};
 
-const req = require.context('.', true, /\.\/.+\/reducer\.js$/);
+const req = require.context('.', true, /\.\/.+\/Reducer\.js$/);
 
 req.keys().forEach(key => {
   const storeName = key.replace(/\.\/(.+)\/.+$/, '$1');

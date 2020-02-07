@@ -1,3 +1,3 @@
-import todoListreducer from './';
+import todoListReducer from './';
 
-export default todoListreducer;
+export default todoListReducer;

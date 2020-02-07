@@ -1,10 +1,20 @@
 const { prompt } = require('enquirer');
 const fs = require('fs');
 const path = require('path');
-
 // import { createComponentFiles } from './fileWriter';
+const COMPONENT = 'component';
+const REDUCER = 'reducer';
+const question_shunt = [
+  {
+    type: 'select',
+    name: 'shunt',
+    message: 'choose shunt',
+    choices: [COMPONENT, REDUCER],
+    default: COMPONENT,
+  },
+];
 
-const questions = [
+const questions_component = [
   {
     type: 'input',
     name: 'componentName',
@@ -13,7 +23,6 @@ const questions = [
       if (input) {
         return true;
       }
-
       return 'component name is required!';
     },
   },
@@ -23,6 +32,20 @@ const questions = [
     message: 'component scope:',
     choices: ['atom', 'molecule', 'organism', 'layout', 'pages'],
     default: 'atom',
+  },
+];
+
+const questions_reducer = [
+  {
+    type: 'input',
+    name: 'reducerName',
+    message: 'reducer name:',
+    validate: input => {
+      if (input) {
+        return true;
+      }
+      return 'reducer name is required!';
+    },
   },
 ];
 
@@ -151,9 +174,80 @@ const createComponentFiles = async ({ name, scope }) => {
   });
 };
 
+const getReducerIndexContent = reducerName => {
+  const upper_reducerName = reducerName.charAt(0).toUpperCase() + reducerName.slice(1);
+  try {
+    const data = fs.readFileSync('./template/reducer/index.js', 'utf8');
+    return data
+      .toString()
+      .replace(/REDUCER_NAME/g, reducerName)
+      .replace(/HOOK_NAME/g, `use${upper_reducerName}`)
+      .replace(/ACTION_NAME/g, `add${upper_reducerName}`);
+  } catch (error) {
+    console.log('getComponentIndexContent error', error);
+  }
+};
+
+const genReducerContent = reducerName => {
+  try {
+    const data = fs.readFileSync('./template/reducer/reducer.js', 'utf8');
+    return data.toString().replace(/REDUCER_NAME/g, `${reducerName}Reducer`);
+  } catch (error) {
+    console.log('genComponentContent error', error);
+  }
+};
+
+const createReducerFiles = async ({ name }) => {
+  const reducerName = name.charAt(0).toLowerCase() + name.slice(1);
+  const scopeDestination = path.join(__dirname, 'src', 'store');
+
+  const reducerFolder = path.join(scopeDestination, reducerName);
+
+  // check component exist
+  try {
+    const fileExist = await fs.existsSync(reducerFolder);
+
+    if (fileExist) {
+      throw new Error('REDUCER_EXIST');
+    }
+  } catch (err) {
+    if (err.message === 'REDUCER_EXIST') {
+      console.log(`REDUCER_EXIST: ${reducerName}`);
+    } else {
+      console.log(err);
+    }
+    return;
+  }
+
+  // create reducer dir
+  fs.mkdir(reducerFolder, async () => {
+    // create reducer index file
+    const reducerIndexPath = `${reducerFolder}/index.js`;
+    const reducerIndexContent = await getReducerIndexContent(reducerName);
+    fs.writeFile(reducerIndexPath, reducerIndexContent, err => {
+      if (err) console.log(`REDUCER_INDEX_FILE_EXIST: ${reducerIndexPath}`);
+      console.log(`Update ${reducerIndexPath}`);
+    });
+
+    // create reducer js
+    const reducerJsPath = `${reducerFolder}/${reducerName}.js`;
+    const reducerContent = await genReducerContent(reducerName);
+    fs.writeFile(reducerJsPath, reducerContent, err => {
+      if (err) console.log(`REDUCER_FILE_EXIST: ${reducerJsPath}`);
+      console.log(`Update ${reducerJsPath}`);
+    });
+  });
+};
+
 const createComponent = async () => {
-  const { componentName, scope } = await prompt(questions);
-  createComponentFiles({ name: componentName, scope });
+  const { shunt } = await prompt(question_shunt);
+  if (shunt === COMPONENT) {
+    const { componentName, scope } = await prompt(questions_component);
+    createComponentFiles({ name: componentName, scope });
+  } else {
+    const { reducerName } = await prompt(questions_reducer);
+    createReducerFiles({ name: reducerName });
+  }
 };
 
 createComponent();
