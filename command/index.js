@@ -52,7 +52,7 @@ const questions_reducer = [
 const getComponentIndexContent = componentName => {
   try {
     const data = fs.readFileSync('./template/component/index.js', 'utf8');
-    return data.toString().replace(/COMPONENT_NAME/g, componentName);
+    return data.toString().replace(/__COMPONENT_NAME__/g, componentName);
   } catch (error) {
     console.log('getComponentIndexContent error', error);
   }
@@ -64,8 +64,8 @@ const genComponentContent = componentName => {
     const componentClassName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
     return data
       .toString()
-      .replace(/COMPONENT_NAME/g, componentName)
-      .replace(/COMPONENT_CLASS_NAME/g, componentClassName);
+      .replace(/__COMPONENT_NAME__/g, componentName)
+      .replace(/__COMPONENT_CLASS_NAME__/g, componentClassName);
   } catch (error) {
     console.log('genComponentContent error', error);
   }
@@ -75,7 +75,7 @@ const genComponentStyleContent = componentName => {
   try {
     const data = fs.readFileSync('./template/component/component.module.scss', 'utf8');
     const componentClassName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
-    return data.toString().replace(/COMPONENT_NAME/g, componentClassName);
+    return data.toString().replace(/__COMPONENT_NAME__/g, componentClassName);
   } catch (error) {
     console.log('genComponentStyleContent error', error);
   }
@@ -88,8 +88,8 @@ const genComponentStoryContent = (componentName, scopeName) => {
     const componentScopeName = `${scopeName.charAt(0).toUpperCase()}${scopeName.slice(1)}s`;
     return data
       .toString()
-      .replace(/COMPONENT_NAME/g, componentName)
-      .replace(/SCOPE_NAME/g, componentScopeName);
+      .replace(/__COMPONENT_NAME__/g, componentName)
+      .replace(/__SCOPE_NAME__/g, componentScopeName);
   } catch (error) {
     console.log('genComponentStoryContent error', error);
   }
@@ -101,8 +101,8 @@ const genComponentTestContent = (componentName, scopeName) => {
     const componentScopeName = `${scopeName.charAt(0).toUpperCase()}${scopeName.slice(1)}s`;
     return data
       .toString()
-      .replace(/COMPONENT_NAME/g, componentName)
-      .replace(/SCOPE_NAME/g, componentScopeName);
+      .replace(/__COMPONENT_NAME__/g, componentName)
+      .replace(/__SCOPE_NAME__/g, componentScopeName);
   } catch (error) {
     console.log('genComponentTestContent error', error);
   }
@@ -180,9 +180,9 @@ const getReducerIndexContent = reducerName => {
     const data = fs.readFileSync('./template/reducer/index.js', 'utf8');
     return data
       .toString()
-      .replace(/REDUCER_NAME/g, reducerName)
-      .replace(/HOOK_NAME/g, `use${upper_reducerName}`)
-      .replace(/ACTION_NAME/g, `add${upper_reducerName}`);
+      .replace(/__REDUCER_NAME__/g, reducerName)
+      .replace(/__HOOK_NAME__/g, `use${upper_reducerName}`)
+      .replace(/__ACTION_NAME__/g, `add${upper_reducerName}`);
   } catch (error) {
     console.log('getComponentIndexContent error', error);
   }
@@ -191,7 +191,7 @@ const getReducerIndexContent = reducerName => {
 const genReducerContent = reducerName => {
   try {
     const data = fs.readFileSync('./template/reducer/reducer.js', 'utf8');
-    return data.toString().replace(/REDUCER_NAME/g, `${reducerName}Reducer`);
+    return data.toString().replace(/__REDUCER_NAME__/g, `${reducerName}Reducer`);
   } catch (error) {
     console.log('genComponentContent error', error);
   }

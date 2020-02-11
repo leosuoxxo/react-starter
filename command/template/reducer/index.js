@@ -7,21 +7,21 @@ const initState = {
 };
 
 const action = {
-  ACTION_NAME: params => ({
+  __ACTION_NAME__: params => ({
     type: ACTION_TYPE,
     payload: { params },
   }),
 };
 
-export const HOOK_NAME = () => {
+export const __HOOK_NAME__ = () => {
   const dispatch = useDispatch();
-  const { DEFAULT_PARAMS } = useSelector(state => state.todoList);
+  const { DEFAULT_PARAMS } = useSelector(state => state.__HOOK_NAME__);
 
-  const ACTION_NAME = params => dispatch(action.ACTION_NAME(params));
+  const __ACTION_NAME__ = params => dispatch(action.__ACTION_NAME__(params));
 
   return [
     { DEFAULT_PARAMS }, // state
-    { ACTION_NAME }, // eventHanlder
+    { __ACTION_NAME__ }, // eventHanlder
   ];
 };
 

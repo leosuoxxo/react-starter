@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "geno": "babel-node index.js",
+    "g": "babel-node command/index.js",
     "start": "cross-env react-app-rewired start",
     "build": "cross-env NODE_ENV=production react-app-rewired build",
     "test": "react-app-rewired test",
